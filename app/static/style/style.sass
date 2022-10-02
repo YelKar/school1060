@@ -1,0 +1,92 @@
+$page-bgc: #f2f3f8
+$text-color: #333
+
+$card-min-width: 400px
+$card-max-width: 600px
+
+$card-border-color: #eee
+$card-border-radius: 10px
+$card-border-width: 1px
+
+$card-shadow-size: 5px
+$card-shadow-color: black
+$card-shadow-blurring: 10px
+
+@import "sidebar"
+
+html
+  color: $text-color
+  background-color: $page-bgc
+  line-height: 1.5em
+  font:
+    family: "Comfortaa", sans-serif
+    size: 18px
+main
+  margin-left: $sidebar-width
+  min-height: 100vh
+
+.cards
+  display: flex
+  flex-wrap: wrap
+  margin: 5%
+  flex: 1 1 auto
+
+.card
+  background-color: #fff
+  padding: 20px
+  margin: 3px
+  box-shadow: 0 0 $card-shadow-blurring (-$card-shadow-blurring + $card-shadow-size) $card-shadow-color
+
+  flex-grow: 1
+  min-width: $card-min-width
+  max-width: $card-max-width
+  width: unset
+  aspect-ratio: 1.5
+  box-sizing: border-box
+
+  border:
+    width: $card-border-width
+    style: solid
+    color: $card-border-color
+    radius: $card-border-radius
+  &_inner
+    margin: 10px
+  &_text
+    display: inline-block
+    width: 100%
+    font-size: 30px
+
+details
+  color: $element-text-color
+  font-weight: bold
+  background-color: #fff
+  margin:
+    left: 20px
+    right: 20px
+    bottom: 5px
+  padding: 10px
+  border:
+    color: $element-text-color
+    style: solid
+    width: 5px
+    radius: 10px
+
+form > details
+    width: 600px
+
+summary
+  display: flex
+  justify-content: space-between
+  padding:
+    left: 35px
+    right: 10px
+  .checkbox
+    margin-top: 5px
+  margin-top: 5px
+  &::before
+    position: absolute
+    margin-left: -30px
+    content: "ᐅ"
+
+details[open] > summary::before
+  content: "ᐁ"

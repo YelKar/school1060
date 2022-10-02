@@ -1,0 +1,126 @@
+@import style.css
+
+$field-line-height: 3
+$field-width: 100%
+
+$field-padding: 8px 15px
+$field-margin: 10px
+$field-border-width: 1px
+$field-border-style: solid
+$field-border-color: #ced4da
+$field-border-radius: 7px
+
+$field-bgc: #fff
+$green: #59d05d
+$red: #ff646d
+
+$radio-field-radius: 24px
+
+form
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+input:not([type=radio])
+  font:
+    family: "Comfortaa", sans-serif
+    size: 15px
+  box-sizing: border-box
+  line-height: $field_line_height
+  width: $field-width
+  padding: $field-padding
+  outline: none
+  border:
+    width: $field-border-width
+    style: $field-border-style
+    color: $field-border-color
+    radius: $field-border-radius
+  &[type=submit]
+    background-color: $green
+    &:hover
+      background-color: darken($green, 5%)
+  &[type=reset]
+    background-color: $red
+    &:hover
+      background-color: darken($red, 5%)
+  &[type=reset], &[type=submit]
+    color: $field-bgc
+    width: auto
+
+
+.action_btns
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  margin: $field-margin
+  input
+    flex: 1 1 auto
+
+.fields
+  display: flex
+  justify-content: space-around
+  align-content: space-around
+  flex-wrap: wrap
+  margin: $field-margin
+
+.field
+  margin: $field-margin
+
+input[type=radio], input[type=checkbox]
+  display: none
+  + label
+    display: inline-block
+    cursor: pointer
+    position: relative
+    padding-left: $radio-field-radius + 5
+    margin-right: 0
+    line-height: 18px
+    user-select: none
+    &::before
+      box-sizing: border-box
+      display: inline-block
+      content: ""
+      width: $radio-field-radius
+      height: $radio-field-radius
+      position: absolute
+      left: 0
+      bottom: -1px
+      border:
+        width: 3.5px
+        style: solid
+        color: #777
+        radius: $radio-field-radius / 2
+    &::after
+      background-color: #007bff
+      box-sizing: border-box
+      display: none
+      content: ""
+      width: $radio-field-radius / 3
+      height: $radio-field-radius / 3
+      position: absolute
+      left: $radio-field-radius / 3
+      bottom: $radio-field-radius / 3 - 1px
+      border:
+        radius: $radio-field-radius / 6
+  &:checked
+    + label
+      &::before
+        border:
+          color: #007bff
+          width: 4px
+      &::after
+        display: inline-block
+
+.error
+  box-sizing: border-box
+  width: auto
+  padding: $field-padding
+  line-height: $field_line_height
+  border: 1px solid $red
+  border-radius: $field-border-radius
+  font:
+    size: 15px
+    weight: bold
+  color: $red

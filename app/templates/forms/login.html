@@ -1,0 +1,32 @@
+{% extends form_base %}
+{% block content %}
+    <form method=post>
+        <div class="fields">
+            <div class="card">
+                {{ form.csrf_token }}
+                {% if form.errors %}
+                    <div class="errors">
+                        {% for field in form.errors.values() %}
+                            {% for error in field %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% for field in form %}
+                    {% if field not in [form.csrf_token, form.reset, form.submit] %}
+                        <div class="field">
+                            {# Для кнопки отправки лейбл не требуется #}
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="action_btns">
+                    {{ form.submit }}
+                    {{ form.reset }}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

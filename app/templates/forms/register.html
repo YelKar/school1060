@@ -1,0 +1,44 @@
+{% extends form_base %}
+{% block content %}
+    <form method=post>
+        <div class="fields">
+            <div class="card">
+                {{ form.csrf_token }}
+                {% for field in form %}
+                    {% if field not in [form.csrf_token, form.reset, form.submit] %}
+                        {% if field.name in ["lastname", "email"] %}
+                            </div>
+                            <div class="card">
+                        {% endif %}
+                        <div class="field">
+                            {# Для кнопки отправки лейбл не требуется #}
+                            {{ field.label }}<br>
+                            {% if field.errors %}
+                                <div class="errors">
+                                    {% for error in field.errors %}
+                                        <div class="error">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {# Вывод select полей #}
+                            {% if field.type == "RadioField" %}
+                                {% for el in field %}
+                                    <div>
+                                        {{ el }}
+                                        {{ el.label }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="action_btns">
+                    {{ form.submit }}
+                    {{ form.reset }}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

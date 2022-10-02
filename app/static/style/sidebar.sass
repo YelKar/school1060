@@ -1,0 +1,102 @@
+$sidebar-width: 260px
+$sidebar-color: white
+$border-between-blocks: 1px solid #eee
+
+$header-height: 55px
+$header-text-color: #555
+$header-font-size: 20px
+
+$element-height: 51px
+$element-tab: 25px
+$element-hover-color: darken($sidebar-color, 2%)
+$element-text-color: #83848a
+$space-between-elements: 5px
+$active-mark-size: 3px
+$blue: #007bff
+
+$element-icon-width: 22px
+
+
+.sidebar
+  position: fixed
+  padding: 0
+  left: 0
+  top: 0
+  bottom: 0
+  height: 100vh
+  width: $sidebar-width
+
+  border-right: $border-between-blocks
+  background-color: $sidebar-color
+  font-weight: bold
+  box-shadow: 5px 0 30px -25px black
+
+header
+  display: inline-block
+  box-sizing: border-box
+  width: $sidebar-width
+  height: $header-height
+  line-height: $header-height
+  margin: 0
+  padding: 0 $element-tab
+  border-bottom: $border-between-blocks
+
+  background-color: $sidebar-color
+
+h1
+  margin: 0
+  font-weight: bold
+  font-size: $header-font-size
+  color: $header-text-color
+
+.sidebar_elements  // Блок с элементами на боковой панели
+  box-sizing: border-box
+  background-color: $sidebar-color
+  width: 100%
+
+.sidebar_element
+  display: list-item
+  width: 100%
+  height: $element-height
+  margin-bottom: $space-between-elements
+  a
+    display: block
+    box-sizing: border-box
+    background-color: $sidebar-color
+    border-left:
+      width: $active-mark-size
+      style: solid
+      color: $sidebar-color
+    color: $element-text-color
+    text-decoration: none
+    font-size: 0.9em
+    padding: 13px $element-tab
+    &:hover
+      background-color: $element-hover-color
+      border-color: lighten($blue, 15%)
+    svg
+      position: absolute
+      display: inline-block
+      width: $element-icon-width
+      height: $element-icon-width
+      margin: 0
+      padding: 0
+      fill: $element-text-color
+      stroke: $element-text-color
+      stroke-width: 2px
+    p
+      display: inline-block
+      margin: 0 0 0 $element-icon-width + 20px
+      padding: 0
+  &.active-element
+    a
+      border-color: $blue
+      background-color: darken($sidebar-color, 2%)
+      color: $text-color
+      box-shadow: 0 0 10px -7px black
+      &:hover
+        border-color: lighten($blue, 10%)
+        background-color: darken($sidebar-color, 2.3%)
+    svg
+      fill: $blue
+      stroke: $blue

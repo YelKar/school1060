@@ -1,0 +1,120 @@
+@import "style.css";
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input:not([type=radio]) {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  line-height: 3;
+  width: 100%;
+  padding: 8px 15px;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ced4da;
+  border-radius: 7px;
+}
+input:not([type=radio])[type=submit] {
+  background-color: #59d05d;
+}
+input:not([type=radio])[type=submit]:hover {
+  background-color: #45ca4a;
+}
+input:not([type=radio])[type=reset] {
+  background-color: #ff646d;
+}
+input:not([type=radio])[type=reset]:hover {
+  background-color: #ff4b55;
+}
+input:not([type=radio])[type=reset], input:not([type=radio])[type=submit] {
+  color: #fff;
+  width: auto;
+}
+
+.action_btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.action_btns input {
+  flex: 1 1 auto;
+}
+
+.fields {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.field {
+  margin: 10px;
+}
+
+input[type=radio], input[type=checkbox] {
+  display: none;
+}
+input[type=radio] + label, input[type=checkbox] + label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 29px;
+  margin-right: 0;
+  line-height: 18px;
+  user-select: none;
+}
+input[type=radio] + label::before, input[type=checkbox] + label::before {
+  box-sizing: border-box;
+  display: inline-block;
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: #777;
+  border-radius: 12px;
+}
+input[type=radio] + label::after, input[type=checkbox] + label::after {
+  background-color: #007bff;
+  box-sizing: border-box;
+  display: none;
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  border-radius: 4px;
+}
+input[type=radio]:checked + label::before, input[type=checkbox]:checked + label::before {
+  border-color: #007bff;
+  border-width: 4px;
+}
+input[type=radio]:checked + label::after, input[type=checkbox]:checked + label::after {
+  display: inline-block;
+}
+
+.error {
+  box-sizing: border-box;
+  width: auto;
+  padding: 8px 15px;
+  line-height: 3;
+  border: 1px solid #ff646d;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ff646d;
+}
+
+/*# sourceMappingURL=forms.css.map */
