@@ -4,103 +4,109 @@
   padding: 0;
   left: 0;
   top: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 260px;
-  border-right: 1px solid #eee;
-  background-color: white;
+  right: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: #595955;
   font-weight: bold;
   box-shadow: 5px 0 30px -25px black;
+}
+
+.sidebar_inner {
+  display: grid;
+  grid-template-columns: 40% auto 20px;
 }
 
 header {
   display: inline-block;
   box-sizing: border-box;
-  width: 260px;
-  height: 55px;
-  line-height: 55px;
+  width: auto;
+  height: 50px;
   margin: 0;
   padding: 0 25px;
-  border-bottom: 1px solid #eee;
-  background-color: white;
+  line-height: 50px;
+  background-color: #595955;
 }
 
 h1 {
   margin: 0;
   font-weight: bold;
   font-size: 20px;
-  color: #555;
+  color: #bbb;
 }
 
 .sidebar_elements {
+  display: flex;
+  justify-content: right;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #595955;
   width: 100%;
+  height: 40px;
 }
 
 .sidebar_element {
-  display: list-item;
-  width: 100%;
-  height: 51px;
+  display: block;
+  width: 50px;
+  height: 50px;
   margin-bottom: 5px;
 }
 .sidebar_element a {
   display: block;
   box-sizing: border-box;
-  background-color: white;
-  border-left-width: 3px;
-  border-left-style: solid;
-  border-left-color: white;
+  width: 50px;
+  height: 50px;
+  background-color: #595955;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #474744;
+  border-top: none;
+  border-bottom: none;
   color: #83848a;
   text-decoration: none;
   font-size: 0.9em;
-  padding: 13px 25px;
 }
 .sidebar_element a:hover {
-  background-color: #fafafa;
-  border-color: #4da3ff;
+  background-color: #51514e;
 }
 .sidebar_element a svg {
   position: absolute;
   display: inline-block;
-  width: 22px;
-  height: 22px;
-  margin: 0;
-  padding: 0;
+  width: 25px;
+  height: 25px;
+  padding: 12.5px;
   fill: #83848a;
   stroke: #83848a;
   stroke-width: 2px;
 }
 .sidebar_element a p {
-  display: inline-block;
-  margin: 0 0 0 42px;
+  display: none;
+  margin: 0 0 0 45px;
   padding: 0;
 }
 .sidebar_element.active-element a {
-  border-color: #007bff;
-  background-color: #fafafa;
-  color: #333;
+  border-bottom: 5px solid #bbb;
+  background-color: #666661;
+  color: #bbb;
   box-shadow: 0 0 10px -7px black;
 }
 .sidebar_element.active-element a:hover {
-  border-color: #3395ff;
-  background-color: #f9f9f9;
+  background-color: #545450;
 }
 .sidebar_element.active-element svg {
-  fill: #007bff;
-  stroke: #007bff;
+  fill: #bbb;
+  stroke: #bbb;
 }
 
 html {
-  color: #333;
-  background-color: #f2f3f8;
+  color: #bbb;
+  background-color: #272822;
   line-height: 1.5em;
   font-family: "Comfortaa", sans-serif;
   font-size: 18px;
 }
 
 main {
-  margin-left: 260px;
+  margin-top: 100px;
   min-height: 100vh;
 }
 
@@ -112,7 +118,7 @@ main {
 }
 
 .card {
-  background-color: #fff;
+  background-color: #595955;
   padding: 20px;
   margin: 3px;
   box-shadow: 0 0 10px -5px black;
@@ -122,35 +128,42 @@ main {
   width: unset;
   aspect-ratio: 1.5;
   box-sizing: border-box;
-  border-width: 1px;
+  border-width: 3px;
   border-style: solid;
-  border-color: #eee;
+  border-color: #aeaeae;
   border-radius: 10px;
 }
 .card_inner {
+  display: grid;
+  grid-template-rows: 70% 30%;
   margin: 10px;
 }
+.card_inner svg {
+  display: block;
+  width: 80%;
+  aspect-ratio: 1;
+}
 .card_text {
-  display: inline-block;
+  display: block;
   width: 100%;
   font-size: 30px;
 }
 
-details {
-  color: #83848a;
+details, .doc_selection {
+  color: #bbb;
   font-weight: bold;
-  background-color: #fff;
+  background-color: #595955;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 5px;
   padding: 10px;
-  border-color: #83848a;
+  border-color: #aeaeae;
   border-style: solid;
-  border-width: 5px;
-  border-radius: 10px;
+  border-width: 2px;
+  border-radius: 3px;
 }
 
-form > details {
+form > details, .doc_selection {
   width: 600px;
 }
 
@@ -172,6 +185,18 @@ summary::before {
 
 details[open] > summary::before {
   content: "ᐁ";
+}
+
+.doc_selection {
+  box-sizing: border-box;
+  padding: 20px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.doc_selection .checkbox {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

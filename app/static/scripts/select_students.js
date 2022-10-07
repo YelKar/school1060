@@ -29,10 +29,54 @@ for (let det of details_all) {
     })
 }
 
-function submit(action_type) {
-    let form = document.querySelector("form");
-    let type_input = document.getElementById("action_type");
-    console.log(type_input);
-    type_input.value = action_type;
-    form.submit();
+// function get_selected() {
+//     let classes = document.querySelectorAll(".chose_class")
+//     let classes_let;
+//     let checked = []
+//     let students;
+//     for (let classroom of classes) {
+//         if (!classroom.checked) {
+//             classes_let = document.querySelectorAll(`details details input.chose_class_let`)
+//             console.log(classes_let)
+//             for (let classroom_let of classes_let) {
+//                 if (!classroom_let.checked) {
+//
+//                 } else {
+//                     checked.push(classroom_let.id)
+//                 }
+//                 console.log(!classroom_let.checked)
+//             }
+//         } else {
+//             checked.push(classroom.id)
+//         }
+//     }
+//     return checked
+// }
+
+
+function to_generate(type) {
+    let action_type = this.name
+    let selected = get_selected()
+    let doc_name = document.querySelector("#doc_name").value
+    const link = document.createElement("a")
+    link.href = "/generate"
+    let args = selected.join("&students=")
+    args = `?type=${action_type}&doc=${doc_name}&students=${args}`
+    link.href += args
+    link.click()
+}
+
+function get_selected() {
+    let students = document.querySelectorAll(".student_checkbox")
+    let checked = [];
+    for (let student of students) {
+        if (student.checked) {
+            checked.push(student.id)
+        }
+    }
+    return checked;
+}
+
+for (let btn of document.querySelectorAll(".generate_btn")) {
+    btn.addEventListener("click", to_generate)
 }

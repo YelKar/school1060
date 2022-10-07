@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="cards select_mode">
-        <a href="{{ url_for('select_students') }}" class="card">
+    <div class="cards">
+        <a href="{{ url_for('select_documents') }}" class="card">
             <div class="card_inner">
-                <div class="card_img"></div>
+                <div class="card_img">{% include "bases/icons/select_documents.svg" %}</div>
                 <span class="card_text">Генерация документов</span>
             </div>
         </a>
         <a class="card">
             <div class="card_inner">
-                <div class="card_img"></div>
+                <div class="card_img">{% include "bases/icons/generate_table.svg" %}</div>
                 <span class="card_text">Генерация таблицы учеников</span>
             </div>
         </a>

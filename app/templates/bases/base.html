@@ -14,24 +14,27 @@
 </head>
 <body>
     <div class="sidebar">
-        <header>
-            {% block header %}
-                <h1>{{ title }}</h1>
-            {% endblock %}
-        </header>
-        <div class="sidebar_elements">
-            {% for link, name in [
-            ("index", "Главная"),
-            ] %}
-                <div class="sidebar_element {{ 'active-element' if request.path == url_for(link) }}">
-                    <a href="{{ url_for(link) }}">
-                        {% include "bases/icons/{}.svg".format(link) %}
-                        <p>
-                            {{ name }}
-                        </p>
-                    </a>
-                </div>
-            {% endfor %}
+        <div class="sidebar_inner">
+            <header>
+                {% block header %}
+                    <h1>{{ title }}</h1>
+                {% endblock %}
+            </header>
+            <div class="sidebar_elements">
+                {% for link, name in [
+                ("select_documents", "Генерация документов"),
+                ("index", "Главная"),
+                ] %}
+                    <div class="sidebar_element {{ 'active-element' if request.path == url_for(link) }}">
+                        <a href="{{ url_for(link) }}">
+                            {% include "bases/icons/{}.svg".format(link) %}
+                            <p class="element_name">
+                                {{ name }}
+                            </p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <main>

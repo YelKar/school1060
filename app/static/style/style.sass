@@ -1,5 +1,6 @@
-$page-bgc: #f2f3f8
-$text-color: #333
+$page-bgc: #272822
+$text-color: #bbb
+$border-color: darken($text-color, 5%)
 
 $card-min-width: 400px
 $card-max-width: 600px
@@ -22,7 +23,7 @@ html
     family: "Comfortaa", sans-serif
     size: 18px
 main
-  margin-left: $sidebar-width
+  margin-top: $sidebar-height * 2
   min-height: 100vh
 
 .cards
@@ -32,7 +33,7 @@ main
   flex: 1 1 auto
 
 .card
-  background-color: #fff
+  background-color: $sidebar-color
   padding: 20px
   margin: 3px
   box-shadow: 0 0 $card-shadow-blurring (-$card-shadow-blurring + $card-shadow-size) $card-shadow-color
@@ -45,33 +46,39 @@ main
   box-sizing: border-box
 
   border:
-    width: $card-border-width
+    width: 3px
     style: solid
-    color: $card-border-color
+    color: $border-color
     radius: $card-border-radius
   &_inner
+    display: grid
+    grid-template-rows: 70% 30%
     margin: 10px
+    svg
+      display: block
+      width: 80%
+      aspect-ratio: 1
   &_text
-    display: inline-block
+    display: block
     width: 100%
     font-size: 30px
 
-details
-  color: $element-text-color
+details, .doc_selection
+  color: $text-color
   font-weight: bold
-  background-color: #fff
+  background-color: $sidebar-color
   margin:
     left: 20px
     right: 20px
     bottom: 5px
   padding: 10px
   border:
-    color: $element-text-color
+    color: $border-color
     style: solid
-    width: 5px
-    radius: 10px
+    width: 2px
+    radius: 3px
 
-form > details
+form > details, .doc_selection
     width: 600px
 
 summary
@@ -90,3 +97,14 @@ summary
 
 details[open] > summary::before
   content: "ᐁ"
+
+.doc_selection
+  box-sizing: border-box
+  padding: 20px
+  height: 70px
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  .checkbox
+    margin-top: 10px

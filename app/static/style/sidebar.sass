@@ -1,9 +1,9 @@
-$sidebar-width: 260px
-$sidebar-color: white
+$sidebar-height: 50px
+$sidebar-color: #595955
 $border-between-blocks: 1px solid #eee
 
 $header-height: 55px
-$header-text-color: #555
+$header-text-color: $text-color
 $header-font-size: 20px
 
 $element-height: 51px
@@ -14,33 +14,36 @@ $space-between-elements: 5px
 $active-mark-size: 3px
 $blue: #007bff
 
-$element-icon-width: 22px
+$element-icon-width: $sidebar-height / 2
 
 
 .sidebar
+  z-index: 10
   position: fixed
   padding: 0
   left: 0
   top: 0
-  bottom: 0
-  height: 100vh
-  width: $sidebar-width
+  right: 0
+  width: 100vw
+  height: $sidebar-height
 
-  border-right: $border-between-blocks
   background-color: $sidebar-color
   font-weight: bold
   box-shadow: 5px 0 30px -25px black
 
+
+.sidebar_inner
+  display: grid
+  grid-template-columns: 40% auto 20px
+
 header
   display: inline-block
   box-sizing: border-box
-  width: $sidebar-width
-  height: $header-height
-  line-height: $header-height
+  width: auto
+  height: $sidebar-height
   margin: 0
   padding: 0 $element-tab
-  border-bottom: $border-between-blocks
-
+  line-height: $sidebar-height
   background-color: $sidebar-color
 
 h1
@@ -50,53 +53,57 @@ h1
   color: $header-text-color
 
 .sidebar_elements  // Блок с элементами на боковой панели
+  display: flex
+  justify-content: right
   box-sizing: border-box
   background-color: $sidebar-color
   width: 100%
+  height: $sidebar-height - 10px
 
 .sidebar_element
-  display: list-item
-  width: 100%
-  height: $element-height
+  display: block
+  width: $sidebar-height
+  height: $sidebar-height
   margin-bottom: $space-between-elements
   a
     display: block
     box-sizing: border-box
+    width: $sidebar-height
+    height: $sidebar-height
+
     background-color: $sidebar-color
-    border-left:
-      width: $active-mark-size
+    border:
+      width: 1px
       style: solid
-      color: $sidebar-color
+      color: darken($sidebar-color, 7%)
+      top: none
+      bottom: none
     color: $element-text-color
     text-decoration: none
     font-size: 0.9em
-    padding: 13px $element-tab
     &:hover
-      background-color: $element-hover-color
-      border-color: lighten($blue, 15%)
+      background-color: darken($sidebar-color, 3%)
     svg
       position: absolute
       display: inline-block
       width: $element-icon-width
       height: $element-icon-width
-      margin: 0
-      padding: 0
+      padding: $element-icon-width / 2
       fill: $element-text-color
       stroke: $element-text-color
       stroke-width: 2px
     p
-      display: inline-block
+      display: none
       margin: 0 0 0 $element-icon-width + 20px
       padding: 0
   &.active-element
     a
-      border-color: $blue
-      background-color: darken($sidebar-color, 2%)
+      border-bottom: 5px solid $text-color
+      background-color: lighten($sidebar-color, 5%)
       color: $text-color
       box-shadow: 0 0 10px -7px black
       &:hover
-        border-color: lighten($blue, 10%)
-        background-color: darken($sidebar-color, 2.3%)
+        background-color: darken($sidebar-color, 2%)
     svg
-      fill: $blue
-      stroke: $blue
+      fill: $text-color
+      stroke: $text-color

@@ -1,16 +1,16 @@
-@import style.css
+@import style.sass
 
 $field-line-height: 3
 $field-width: 100%
 
 $field-padding: 8px 15px
 $field-margin: 10px
-$field-border-width: 1px
+$field-border-width: 2px
 $field-border-style: solid
-$field-border-color: #ced4da
-$field-border-radius: 7px
+$field-border-color: $text-color
+$field-border-radius: 3px
 
-$field-bgc: #fff
+$field-bgc: #595955
 $green: #59d05d
 $red: #ff646d
 
@@ -23,7 +23,11 @@ form
   justify-content: center
   align-items: center
 
-input:not([type=radio])
+  &.selection
+    display: grid
+    grid-template-columns: 30% 40% 30%
+
+input:not([type=radio]), .generate_btn
   font:
     family: "Comfortaa", sans-serif
     size: 15px
@@ -32,22 +36,23 @@ input:not([type=radio])
   width: $field-width
   padding: $field-padding
   outline: none
+  font-weight: bold
+  color: $text-color
+  background-color: $sidebar-color
   border:
     width: $field-border-width
     style: $field-border-style
     color: $field-border-color
     radius: $field-border-radius
-  &[type=submit]
-    background-color: $green
-    &:hover
-      background-color: darken($green, 5%)
-  &[type=reset]
-    background-color: $red
-    &:hover
-      background-color: darken($red, 5%)
+  &:hover
+    background-color: darken($sidebar-color, 5%)
   &[type=reset], &[type=submit]
-    color: $field-bgc
     width: auto
+    padding-left: 40px
+    padding-right: 40px
+
+.generate_btn
+  margin: 2px 0
 
 
 .action_btns
@@ -90,10 +95,10 @@ input[type=radio], input[type=checkbox]
       border:
         width: 3.5px
         style: solid
-        color: #777
+        color: $text-color
         radius: $radio-field-radius / 2
     &::after
-      background-color: #007bff
+      background-color: $text-color
       box-sizing: border-box
       display: none
       content: ""
@@ -108,7 +113,7 @@ input[type=radio], input[type=checkbox]
     + label
       &::before
         border:
-          color: #007bff
+          color: $text-color
           width: 4px
       &::after
         display: inline-block
