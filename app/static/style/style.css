@@ -181,6 +181,12 @@ details, .doc_selection, button, input[type=submit] {
   border-radius: 3px;
 }
 
+.doc_selection, .doc_selection + input[type=submit] {
+  width: 50%;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
 button:hover, input[type=submit]:hover {
   cursor: pointer;
   background-color: #545450;
