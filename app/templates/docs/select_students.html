@@ -1,4 +1,4 @@
-{% extends form_base %}
+{% extends base %}
 {% block content %}
     <form name="chose_students" class="selection select_students" method="post">
         <div class="right_block"></div>
@@ -31,10 +31,8 @@
                 {% endfor %}
                 </details>
             {% endfor %}
-        </div>
-        <div class="left_block">
-            <button class="generate_btn" name="print" onclick="return false">Просмотреть и распечатать</button>
-            <div id="download_docs">
+            <div class="btn_block">
+                <button class="generate_btn" name="print" onclick="return false">Просмотреть и распечатать</button>
                 <button class="generate_btn" name="pdf" onclick="return false" id="download_pdf">pdf</button>
                 <button class="generate_btn" name="docx" onclick="return false" id="download_doc">doc</button>
             </div>

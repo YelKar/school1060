@@ -1,11 +1,11 @@
-{% extends form_base %}
+{% extends base %}
 {% block content %}
     <form name="chose_students" class="chose_students" method="post">
     {% for doc in docs %}
         <div class="doc_selection">
             <span>{{ doc }}</span>
             <div class="checkbox">
-                <input id="chose_doc{{ doc }}" value="{{ doc }}" name="docs" type="radio">
+                <input id="chose_doc{{ doc }}" value="{{ doc }}" name="docs" type="radio" checked>
                 <label for="chose_doc{{ doc }}"></label>
             </div>
         </div>

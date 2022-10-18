@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .sidebar {
+  z-index: 10;
   position: fixed;
   padding: 0;
   left: 0;
@@ -14,7 +15,8 @@
 
 .sidebar_inner {
   display: grid;
-  grid-template-columns: 40% auto 20px;
+  grid-template-columns: 40% auto 100px;
+  margin-right: 20px;
 }
 
 header {
@@ -50,8 +52,9 @@ h1 {
   height: 50px;
   margin-bottom: 5px;
 }
-.sidebar_element a {
+.sidebar_element a, .sidebar_element button {
   display: block;
+  position: relative;
   box-sizing: border-box;
   width: 50px;
   height: 50px;
@@ -65,23 +68,33 @@ h1 {
   text-decoration: none;
   font-size: 0.9em;
 }
-.sidebar_element a:hover {
-  background-color: #51514e;
+.sidebar_element a:hover, .sidebar_element button:hover {
+  background-color: #5e5e5a;
 }
-.sidebar_element a svg {
+.sidebar_element a svg, .sidebar_element button svg {
   position: absolute;
   display: inline-block;
   width: 25px;
   height: 25px;
   padding: 12.5px;
-  fill: #83848a;
-  stroke: #83848a;
+  fill: #bbb;
+  stroke: #bbb;
   stroke-width: 2px;
 }
-.sidebar_element a p {
+.sidebar_element a p, .sidebar_element button p {
   display: none;
   margin: 0 0 0 45px;
   padding: 0;
+}
+.sidebar_element button {
+  width: auto;
+  min-width: 50px;
+  font-weight: bold;
+}
+.sidebar_element button svg {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .sidebar_element.active-element a {
   border-bottom: 5px solid #bbb;
@@ -149,7 +162,12 @@ main {
   font-size: 30px;
 }
 
-details, .doc_selection {
+.main_block {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+details, .doc_selection, button, input[type=submit] {
   color: #bbb;
   font-weight: bold;
   background-color: #595955;
@@ -163,8 +181,26 @@ details, .doc_selection {
   border-radius: 3px;
 }
 
-form > details, .doc_selection {
-  width: 600px;
+button:hover, input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #545450;
+}
+button:active, input[type=submit]:active {
+  background-color: #4f4f4b;
+}
+
+.btn_block {
+  width: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: 70% 15% 15%;
+}
+.btn_block button {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 summary {
@@ -197,6 +233,52 @@ details[open] > summary::before {
 }
 .doc_selection .checkbox {
   margin-top: 10px;
+}
+
+input[type=radio], input[type=checkbox] {
+  display: none;
+}
+input[type=radio] + label, input[type=checkbox] + label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 29px;
+  margin-right: 0;
+  line-height: 18px;
+  user-select: none;
+}
+input[type=radio] + label::before, input[type=checkbox] + label::before {
+  box-sizing: border-box;
+  display: inline-block;
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: #bbb;
+  border-radius: 12px;
+}
+input[type=radio] + label::after, input[type=checkbox] + label::after {
+  background-color: #bbb;
+  box-sizing: border-box;
+  display: none;
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  border-radius: 4px;
+}
+input[type=radio]:checked + label::before, input[type=checkbox]:checked + label::before {
+  border-color: #bbb;
+  border-width: 4px;
+}
+input[type=radio]:checked + label::after, input[type=checkbox]:checked + label::after {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */

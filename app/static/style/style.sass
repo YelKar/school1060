@@ -13,6 +13,8 @@ $card-shadow-size: 5px
 $card-shadow-color: black
 $card-shadow-blurring: 10px
 
+$radio-field-radius: 24px
+
 @import "sidebar"
 
 html
@@ -63,7 +65,10 @@ main
     width: 100%
     font-size: 30px
 
-details, .doc_selection
+.main_block
+  margin-left: 25%
+  margin-right: 25%
+details, .doc_selection, button, input[type=submit]
   color: $text-color
   font-weight: bold
   background-color: $sidebar-color
@@ -78,8 +83,25 @@ details, .doc_selection
     width: 2px
     radius: 3px
 
-form > details, .doc_selection
-    width: 600px
+button, input[type=submit]
+  &:hover
+    cursor: pointer
+    background-color: darken($sidebar-color, 2%)
+  &:active
+    background-color: darken($sidebar-color, 4%)
+
+.btn_block
+  width: auto
+  margin:
+    left: 20px
+    right: 20px
+    bottom: 5px
+  display: grid
+  grid-template-columns: 70% 15% 15%
+  button
+    width: 100%
+    box-sizing: border-box
+    margin: 0
 
 summary
   display: flex
@@ -108,3 +130,48 @@ details[open] > summary::before
 
   .checkbox
     margin-top: 10px
+
+input[type=radio], input[type=checkbox]
+  display: none
+  + label
+    display: inline-block
+    cursor: pointer
+    position: relative
+    padding-left: $radio-field-radius + 5
+    margin-right: 0
+    line-height: 18px
+    user-select: none
+    &::before
+      box-sizing: border-box
+      display: inline-block
+      content: ""
+      width: $radio-field-radius
+      height: $radio-field-radius
+      position: absolute
+      left: 0
+      bottom: -1px
+      border:
+        width: 3.5px
+        style: solid
+        color: $text-color
+        radius: $radio-field-radius / 2
+    &::after
+      background-color: $text-color
+      box-sizing: border-box
+      display: none
+      content: ""
+      width: $radio-field-radius / 3
+      height: $radio-field-radius / 3
+      position: absolute
+      left: $radio-field-radius / 3
+      bottom: $radio-field-radius / 3 - 1px
+      border:
+        radius: $radio-field-radius / 6
+  &:checked
+    + label
+      &::before
+        border:
+          color: $text-color
+          width: 4px
+      &::after
+        display: inline-block

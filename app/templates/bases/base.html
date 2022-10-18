@@ -20,6 +20,9 @@
                     <h1>{{ title }}</h1>
                 {% endblock %}
             </header>
+            <div class="context_bar">
+                {% block context_bar %}{% endblock %}
+            </div>
             <div class="sidebar_elements">
                 {% for link, name in [
                 ("select_documents", "Генерация документов"),

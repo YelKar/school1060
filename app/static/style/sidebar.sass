@@ -16,6 +16,10 @@ $blue: #007bff
 
 $element-icon-width: $sidebar-height / 2
 
+@mixin split
+  width: 1px
+  style: solid
+  color: darken($sidebar-color, 7%)
 
 .sidebar
   z-index: 10
@@ -34,7 +38,17 @@ $element-icon-width: $sidebar-height / 2
 
 .sidebar_inner
   display: grid
-  grid-template-columns: 40% auto 20px
+  grid-template-columns: 40% auto $sidebar-height * 2
+  margin-right: 20px
+
+//.context_bar
+//  display: flex
+//  justify-content: flex-start
+//  border-left:
+//    @include split
+//  border-right:
+//    @include split
+
 
 header
   display: inline-block
@@ -52,7 +66,7 @@ h1
   font-size: $header-font-size
   color: $header-text-color
 
-.sidebar_elements  // Блок с элементами на боковой панели
+.sidebar_elements  // Блок с элементами
   display: flex
   justify-content: right
   box-sizing: border-box
@@ -65,37 +79,44 @@ h1
   width: $sidebar-height
   height: $sidebar-height
   margin-bottom: $space-between-elements
-  a
+  a, button
     display: block
+    position: relative
     box-sizing: border-box
     width: $sidebar-height
     height: $sidebar-height
 
     background-color: $sidebar-color
     border:
-      width: 1px
-      style: solid
-      color: darken($sidebar-color, 7%)
+      @include split
       top: none
       bottom: none
     color: $element-text-color
     text-decoration: none
     font-size: 0.9em
     &:hover
-      background-color: darken($sidebar-color, 3%)
+      background-color: lighten($sidebar-color, 2%)
     svg
       position: absolute
       display: inline-block
       width: $element-icon-width
       height: $element-icon-width
       padding: $element-icon-width / 2
-      fill: $element-text-color
-      stroke: $element-text-color
+      fill: $text-color
+      stroke: $text-color
       stroke-width: 2px
     p
       display: none
       margin: 0 0 0 $element-icon-width + 20px
       padding: 0
+  button
+    width: auto
+    min-width: $sidebar-height
+    font-weight: bold
+    svg
+      position: absolute
+      left: 0
+      top: 0
   &.active-element
     a
       border-bottom: 5px solid $text-color
@@ -107,3 +128,4 @@ h1
     svg
       fill: $text-color
       stroke: $text-color
+

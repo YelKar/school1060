@@ -1,11 +1,6 @@
 # from .form_views import *
-from .docs_views import *
 
 from app import app
-from app.database import db
-from app.models import User, Info, Role, RolesUsers
-
-from flask import render_template, request
 
 e = (i for i in range(1000))
 
@@ -15,6 +10,8 @@ def index():
     title = "School1060"
     return render_template("index.html", title=title)
 
+
+from .docs_views import *
 # @app.route('/test')
 # def test():
 #     user = User(
