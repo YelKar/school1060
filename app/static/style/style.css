@@ -15,7 +15,7 @@
 
 .sidebar_inner {
   display: grid;
-  grid-template-columns: 40% auto 100px;
+  grid-template-columns: auto 0 100px;
   margin-right: 20px;
 }
 
@@ -119,27 +119,37 @@ html {
 }
 
 main {
-  margin-top: 100px;
+  padding-top: 100px;
   min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100vw;
 }
 
 .cards {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin: 5%;
-  flex: 1 1 auto;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
 }
 
 .card {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 575px;
+  min-width: 575px;
+  max-width: 575px;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
   background-color: #595955;
   padding: 20px;
-  margin: 3px;
+  margin: 20px;
   box-shadow: 0 0 10px -5px black;
-  flex-grow: 1;
-  min-width: 400px;
-  max-width: 600px;
-  width: unset;
-  aspect-ratio: 1.5;
+  grid-template-rows: 70% 30%;
   box-sizing: border-box;
   border-width: 3px;
   border-style: solid;
@@ -148,18 +158,27 @@ main {
 }
 .card_inner {
   display: grid;
-  grid-template-rows: 70% 30%;
+  grid-template-rows: 80% 20%;
   margin: 10px;
 }
-.card_inner svg {
-  display: block;
-  width: 80%;
-  aspect-ratio: 1;
+.card_inner .card_img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card_inner .card_img svg {
+  height: 100%;
 }
 .card_text {
-  display: block;
+  display: flex;
   width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
+  color: #bbb !important;
 }
 
 .main_block {
@@ -167,7 +186,8 @@ main {
   margin-right: 25%;
 }
 
-details, .doc_selection, button, input[type=submit] {
+details, .doc_selection, button,
+input[type=submit], label[for=all_checkboxes] {
   color: #bbb;
   font-weight: bold;
   background-color: #595955;
@@ -201,12 +221,47 @@ button:active, input[type=submit]:active {
   margin-right: 20px;
   margin-bottom: 5px;
   display: grid;
-  grid-template-columns: 70% 15% 15%;
 }
-.btn_block button {
+.btn_block.docs {
+  grid-template-columns: 50% 15% 15% 20%;
+}
+.btn_block.tables {
+  grid-template-columns: 80% 20%;
+}
+.btn_block * {
   width: 100%;
+  height: 40px;
+  line-height: 100%;
   box-sizing: border-box;
   margin: 0;
+  font-size: 13.2px;
+  font-weight: bold;
+  font-family: Comfortaa;
+}
+.btn_block input[type=checkbox] + label {
+  text-align: center;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.btn_block input[type=checkbox] + label::before, .btn_block input[type=checkbox] + label::after {
+  display: none !important;
+}
+.btn_block input[type=checkbox] + label .checked {
+  display: none;
+}
+.btn_block input[type=checkbox] + label .unchecked {
+  display: initial;
+}
+.btn_block input[type=checkbox]:checked + label {
+  background-color: #bbb;
+  color: #595955;
+}
+.btn_block input[type=checkbox]:checked + label .checked {
+  display: initial;
+}
+.btn_block input[type=checkbox]:checked + label .unchecked {
+  display: none;
 }
 
 summary {

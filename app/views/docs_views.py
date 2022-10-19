@@ -11,7 +11,7 @@ from app.models import Students
 from app.constants import class_letters, year_to_classroom
 
 from datetime import datetime
-from app.documents.generate_docs import generate, query2docx_context, docx_to_pdf
+from app.documents import docs
 
 doc_names = [
     name[:-5] for name
@@ -55,11 +55,23 @@ def generate_docs():
         Students.query.filter_by(id=int(student_id)).first()
         for student_id in students_id
     ]
-    generated = generate(doc_name, *query2docx_context(students))
+    generated = docs.generate(doc_name, *docs.query2context(students))
     if doc_type == "docx":
         return send_file(generated, as_attachment=True)
     elif doc_type == "pdf":
-        return send_file(docx_to_pdf(generated), as_attachment=True)
+        return send_file(docs.to_pdf(generated), as_attachment=True)
     elif doc_type == "print":
-        return send_file(docx_to_pdf(generated))
+        return send_file(docs.to_pdf(generated))
 
+
+@app.route('/generate_table', methods=['GET', 'POST'])
+def generate_table():
+    students = Students.query
+    date = datetime.now().date()
+    year = date.year - (1 if date.month < 9 else 0)
+    return render_template("tables/select_students.html",
+                           db=db,
+                           students=students,
+                           letters=class_letters,
+                           year=year, let=1,
+                           title=f'Выбор учеников для генерации таблицы')

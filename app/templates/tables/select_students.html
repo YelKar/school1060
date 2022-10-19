@@ -1,0 +1,20 @@
+{% extends students_base %}
+{% block before %}
+    <div class="btn_block tables">
+        <button class="generate_btn" name="xlsx" onclick="return false">xlsx</button>
+        <div class="check_all">
+            <input id="all_checkboxes" type="checkbox">
+            <label for="all_checkboxes">
+                <span class="checked">Снять все</span>
+                <span class="unchecked">Выбрать все</span>
+            </label>
+        </div>
+    </div>
+{% endblock %}
+{#
+todo разделение классов по листам
+todo добавление столбцов по загаловкам
+todo добавление столбцов созначениями из бд (input select)
+
+
+#}

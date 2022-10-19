@@ -34,7 +34,7 @@ def context_var(value: int or str):
     return formatting
 
 
-def query2docx_context(query: list):
+def query2context(query: list):
     now = datetime.now()
     for student in query:
         yield dict(
@@ -47,7 +47,7 @@ def query2docx_context(query: list):
         )
 
 
-def docx_to_pdf(route: str):
+def to_pdf(route: str):
     route = "app/" + route
     route_pdf = route.replace(".docx", ".pdf").replace("/docx/", "/pdf/")
     convert(route, route_pdf)

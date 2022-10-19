@@ -1,0 +1,39 @@
+{% extends base %}
+{% block content %}
+    <form name="chose_students" class="selection select_students" method="post">
+        <div class="main_block">
+            {% block before %}{% endblock %}
+            {% for classroom in range(1, 12) %}
+            <details>
+                <summary>
+                    {{ classroom }} класс
+                    <div class="checkbox">
+                        <input id="chose_class{{ classroom }}" type="checkbox" class="chose_class">
+                        <label for="chose_class{{ classroom }}"></label>
+                    </div>
+                </summary>
+                {% for num, let in letters.items() %}
+                    <details>
+                    <summary>
+                        {{ classroom|string + let }}
+                        <div class="checkbox">
+                            <input id="chose_class{{ classroom }}{{ let }}" type="checkbox" class="chose_class_let">
+                            <label for="chose_class{{ classroom }}{{ let }}"></label>
+                        </div>
+                    </summary>
+                    {% for student in students.filter_by(admission_year=year-classroom, classroom_letter=num) %}
+                        <p class="checkbox">
+                            <input type="checkbox" id="{{ student.id }}" name="s{{ student.id }}" class="student_checkbox">
+                            <label for="{{ student.id }}">{{ student.lastname }} {{ student.name }} {{ student.patronymic }}</label>
+                        </p>
+                    {% endfor %}
+                    </details>
+                {% endfor %}
+                </details>
+            {% endfor %}
+            {% block after %}{% endblock %}
+        </div>
+        <input type="hidden" value="{{ request.args.get("doc") }}" id="doc_name">
+    </form>
+    <script src="{{ url_for('static', filename='scripts/select_students.js') }}"></script>
+{% endblock %}

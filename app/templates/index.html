@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
     <div class="cards">
         <a href="{{ url_for('select_documents') }}" class="card">
             <div class="card_inner">
@@ -12,12 +17,11 @@
                 <span class="card_text">Генерация документов</span>
             </div>
         </a>
-        <a class="card">
+        <a href="{{ url_for('generate_table') }}" class="card">
             <div class="card_inner">
                 <div class="card_img">{% include "bases/icons/generate_table.svg" %}</div>
                 <span class="card_text">Генерация таблицы учеников</span>
             </div>
         </a>
     </div>
-
 {% endblock %}

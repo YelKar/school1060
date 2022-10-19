@@ -4,6 +4,8 @@ flask_admin
 
 docxtpl~=0.16.0
 docx2pdf~=0.1.8
+openpyxl~=3.0.10
 
 colorama~=0.4.4
 passlib~=1.7.4
+WTForms~=3.0.1

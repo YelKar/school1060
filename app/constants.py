@@ -3,6 +3,7 @@ from datetime import datetime
 
 CONTEXT_CONSTANTS = dict(
     base="bases/base.html",
+    students_base="bases/select_students.html",
     about_site="School1060",
 )
 
