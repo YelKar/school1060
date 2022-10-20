@@ -57,12 +57,21 @@ for (let det of details_all) {
 function to_generate(type) {
     let action_type = this.name
     let selected = get_selected()
+    if (!selected.length) {
+        return;
+    }
     let doc_name = document.querySelector("#doc_name").value
     const link = document.createElement("a")
-    link.href = "/generate"
+    link.href = "/generating_" + action_type
     let args = selected.join("&students=")
     args = `?type=${action_type}&doc=${doc_name}&students=${args}`
     link.href += args
+    if (action_type == "xlsx") {
+        const class_sheets = document.querySelector("input#class_sheet").checked
+        const split_fullname = document.querySelector("input#split_fullname").checked
+        link.href += `&class_sheets=${+class_sheets}
+                      &split_fullname=${+split_fullname}`
+    }
     link.click()
 }
 

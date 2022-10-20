@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from .constants import class_letters
 from .database import db
 
 
@@ -60,3 +63,15 @@ class Students(db.Model):
     patronymic = db.Column(db.String(64))
     admission_year = db.Column(db.Integer())
     classroom_letter = db.Column(db.Integer())
+
+    def grade(self):
+        now = datetime.now()
+        current_year = now.year
+        current_month = now.month
+        current_grade = current_year - self.admission_year
+        if current_month < 9:
+            current_grade -= 1
+        return current_grade
+
+    def full_grade(self):
+        return str(self.grade()) + class_letters[self.classroom_letter]

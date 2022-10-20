@@ -2,9 +2,11 @@ import os
 
 from docx2pdf import convert
 
+import tables
 from app import app
 from flask import render_template, request, redirect, \
     url_for, send_file
+from sqlalchemy.orm.scoping import scoped_session
 
 from app.database import db
 from app.models import Students
@@ -43,7 +45,9 @@ def select_documents():
                            title="Выбор документов для печати")
 
 
-@app.route('/generate')
+@app.route('/generating_docx')
+@app.route('/generating_pdf')
+@app.route('/generating_print')
 def generate_docs():
     doc_name = request.args.get("doc")
     doc_type = request.args.get("type")
@@ -65,7 +69,7 @@ def generate_docs():
 
 
 @app.route('/generate_table', methods=['GET', 'POST'])
-def generate_table():
+def table():
     students = Students.query
     date = datetime.now().date()
     year = date.year - (1 if date.month < 9 else 0)
@@ -75,3 +79,42 @@ def generate_table():
                            letters=class_letters,
                            year=year, let=1,
                            title=f'Выбор учеников для генерации таблицы')
+
+
+@app.route('/generating_xlsx')
+def generate_table():
+    student_ids = list(
+        map(
+            int, request.args.getlist("students")
+        )
+    )
+    titles = ["Фамилия", "Имя", "Отчество"]
+    fillings = ["lastname", "name", "patronymic"]
+    query = [
+        eval(f"Students.{filling}")
+        for filling in fillings
+    ]
+    if int(request.args.get("class_sheets")):
+        students = query_for_table(student_ids, query + [Students.id])
+
+        sheets = {}
+        for student in students:
+            grade = Students.query.filter_by(id=student.id).first().full_grade()
+            sheet_name = f"{grade} класс"
+            sheet = sheets.get(sheet_name)
+            if not sheet:
+                sheets[sheet_name] = []
+            sheets[sheet_name].append(student[:-1])
+    else:
+        students = query_for_table(student_ids, query)
+        sheets = {
+            "sheet": students
+        }
+    return send_file(tables.generate(titles, **sheets,
+                                     fullname=not int(request.args.get("split_fullname"))), as_attachment=True)
+
+
+def query_for_table(ids, query):
+    session: scoped_session = db.session
+    for st_id in ids:
+        yield session.query(*query).filter_by(id=st_id).first()

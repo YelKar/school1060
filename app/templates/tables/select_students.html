@@ -1,12 +1,30 @@
 {% extends students_base %}
 {% block before %}
     <div class="btn_block tables">
-        <button class="generate_btn" name="xlsx" onclick="return false">xlsx</button>
+        <button class="generate_btn" name="xlsx" onclick="return false">
+            Сгенерировать таблицу
+        </button>
         <div class="check_all">
             <input id="all_checkboxes" type="checkbox">
             <label for="all_checkboxes">
                 <span class="checked">Снять все</span>
                 <span class="unchecked">Выбрать все</span>
+            </label>
+        </div>
+    </div>
+    <div class="btn_block tables_settings">
+        <div class="check_all">
+            <input id="class_sheet" type="checkbox">
+            <label for="class_sheet">
+                <span class="checked">Делить классы на страницы</span>
+                <span class="unchecked">Делить классы на страницы</span>
+            </label>
+        </div>
+        <div class="check_all">
+            <input id="split_fullname" type="checkbox" checked>
+            <label for="split_fullname">
+                <span class="checked">Разделить ФИО на 3 столбца</span>
+                <span class="unchecked">Разделить ФИО на 3 столбца</span>
             </label>
         </div>
     </div>

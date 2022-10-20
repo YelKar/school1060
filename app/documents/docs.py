@@ -39,12 +39,29 @@ def query2context(query: list):
     for student in query:
         yield dict(
             fullname=f"{student.lastname} {student.name} {student.patronymic}",
+            lastname=student.lastname,
+            name=student.name,
+            patronymic=student.patronymic,
             birthdate="",
             classroom=f"{year_to_classroom(student.admission_year)}",
             letter=class_letters[student.classroom_letter],
             date=now.strftime("%d.%m.%y"),
             Date=now.strftime("%d.%m.%Y")
         )
+
+
+def genitive(word, **word_type):
+    if word_type.get("lastname"):
+        genitive_lastnames = {
+            "в": "ва",
+            "н": "на",
+            "ий": "ого",
+            "ой": "ого",
+            "ва": "вой",
+            "на": "ной",
+            "ая": "ой",
+            "ок": "ка"
+        }
 
 
 def to_pdf(route: str):
