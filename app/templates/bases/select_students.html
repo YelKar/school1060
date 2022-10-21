@@ -13,6 +13,7 @@
                     </div>
                 </summary>
                 {% for num, let in letters.items() %}
+                    {% if students.filter_by(admission_year=year-classroom, classroom_letter=num).all() %}
                     <details>
                     <summary>
                         {{ classroom|string + let }}
@@ -28,6 +29,7 @@
                         </p>
                     {% endfor %}
                     </details>
+                    {% endif %}
                 {% endfor %}
                 </details>
             {% endfor %}
