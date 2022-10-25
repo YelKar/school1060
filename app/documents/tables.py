@@ -1,4 +1,7 @@
+import os.path
 import string
+import sys
+from datetime import datetime
 
 from openpyxl import Workbook
 from openpyxl.styles import Font
@@ -42,9 +45,9 @@ def generate(titles: list, fullname=True, **sheets: list[list[str]]):
             letter = get_column_letter(col)
             column = ws.column_dimensions[letter]
             column.width = w + 2
-
-    wb.save("app/documents/generated/xlsx/test.xlsx")
-    return "documents/generated/xlsx/test.xlsx"
+    gen_id = datetime.now().strftime("%d-%m-%y___%H-%M-%S--%f")
+    wb.save(f"app/documents/generated/xlsx/table{gen_id}.xlsx")
+    return f"documents/generated/xlsx/table{gen_id}.xlsx"
 
 
 if __name__ == '__main__':
