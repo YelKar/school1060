@@ -14,7 +14,7 @@ def generate(name: str, *contexts: dict[int or str]):
             context[key] = context_var(val)
 
     doc.render({'context': contexts})
-    gen_id = datetime.now().strftime("%H-%M-%S--%f___%d-%m-%y")
+    gen_id = datetime.now().strftime("%d-%m-%y___%H-%M-%S--%f")
     save_route = f"documents/generated/docx/{name}{gen_id}.docx"
     doc.save("app/" + save_route)
     return save_route
