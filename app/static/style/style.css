@@ -182,12 +182,37 @@ main {
 }
 
 .main_block {
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+@media screen and (max-width: 1000px) {
+  .main_block {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .main_block {
+    margin-left: 24%;
+    margin-right: 24%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .main_block {
+    margin-left: 27%;
+    margin-right: 27%;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .main_block {
+    margin-left: 32%;
+    margin-right: 32%;
+  }
 }
 
 details, .doc_selection, button,
-input[type=submit], .btn_block label {
+input[type=submit],
+.btn_block label, .btn_block input[type=text] {
   color: #bbb;
   font-weight: bold;
   background-color: #595955;
@@ -199,6 +224,10 @@ input[type=submit], .btn_block label {
   border-style: solid;
   border-width: 2px;
   border-radius: 3px;
+}
+
+.btn_block input[type=text] {
+  outline: none;
 }
 
 .doc_selection, .doc_selection + input[type=submit] {
@@ -229,17 +258,28 @@ button:active, input[type=submit]:active {
   grid-template-columns: 80% 20%;
 }
 .btn_block.tables_settings {
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 49.47% 50.53%;
+}
+.btn_block.table_column {
+  grid-template-columns: auto 200px 50px;
+}
+.btn_block.add_column {
+  grid-template-columns: 100%;
 }
 .btn_block * {
   width: 100%;
   height: auto;
   line-height: 100%;
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 !important;
   font-size: 13.2px;
   font-weight: bold;
   font-family: Comfortaa;
+}
+.btn_block input[type=text]::placeholder {
+  color: #a2a2a2;
+  font-weight: bold;
+  text-align: center;
 }
 .btn_block input[type=checkbox] + label {
   text-align: center;

@@ -1,5 +1,3 @@
-import os.path
-
 from docx2pdf import convert
 from docxtpl import DocxTemplate, RichText
 from datetime import datetime
@@ -50,18 +48,27 @@ def query2context(query: list):
         )
 
 
+genitive_names = {
+    "а": "ы",
+
+}
+genitive_lastnames = {
+    "в": "ва",
+    "н": "на",
+    "ий": "ого",
+    "ой": "ого",
+    "ва": "вой",
+    "на": "ной",
+    "ая": "ой",
+    "ок": "ка",
+    "а": "ы",
+    "ы": ""
+}
+
+
 def genitive(word, **word_type):
     if word_type.get("lastname"):
-        genitive_lastnames = {
-            "в": "ва",
-            "н": "на",
-            "ий": "ого",
-            "ой": "ого",
-            "ва": "вой",
-            "на": "ной",
-            "ая": "ой",
-            "ок": "ка"
-        }
+        ...
 
 
 def to_pdf(route: str):

@@ -1,7 +1,5 @@
 import os
 
-from docx2pdf import convert
-
 import tables
 from app import app
 from flask import render_template, request, redirect, \
@@ -10,7 +8,7 @@ from sqlalchemy.orm.scoping import scoped_session
 
 from app.database import db
 from app.models import Students
-from app.constants import class_letters, year_to_classroom
+from app.constants import class_letters
 
 from datetime import datetime
 from app.documents import docs
@@ -83,6 +81,7 @@ def table():
 
 @app.route('/generating_xlsx')
 def generate_table():
+    print(request.args.getlist("fills"))
     student_ids = list(
         map(
             int, request.args.getlist("students")
@@ -90,6 +89,7 @@ def generate_table():
     )
     titles = ["Фамилия", "Имя", "Отчество"]
     fillings = ["lastname", "name", "patronymic"]
+    titles += request.args.getlist("headers")
     query = [
         eval(f"Students.{filling}")
         for filling in fillings
@@ -116,5 +116,15 @@ def generate_table():
 
 def query_for_table(ids, query):
     session: scoped_session = db.session
+    res_query = query.copy()
+    spec_fields = {
+        "classroom": ["admission_year"],
+        "classroom_and_letter": ["admission_year", "classroom_letter"],
+    }
+    if set(spec_fields.keys()) & set(res_query):
+        for num, q in enumerate(res_query):
+            if q in spec_fields:
+                res_query[num:num+1] = spec_fields[q]
+    print(query, res_query)
     for st_id in ids:
         yield session.query(*query).filter_by(id=st_id).first()

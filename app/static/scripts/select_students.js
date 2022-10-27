@@ -72,6 +72,22 @@ function to_generate(type) {
         link.href += `&class_sheets=${+class_sheets}
                       &split_fullname=${+split_fullname}`
     }
+    let adding_column = document.querySelector("div.add_column")
+    console.log(!!adding_column)
+    if (adding_column) {
+        let fills = document.querySelectorAll(".column_fill")
+        let headers = document.querySelectorAll(".column_header")
+        let table_args = ""
+        for (let header of headers) {
+            let head_value = header.value
+            table_args += "&headers=" + head_value
+        }
+        for (let fill of fills) {
+            let head_value = fill.value
+            table_args += "&fills=" + head_value
+        }
+        link.href += table_args
+    }
     link.click()
 }
 

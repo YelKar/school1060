@@ -39,7 +39,6 @@ main
   align-content: space-around
   align-items: center
 
-
 .card
   flex-grow: 1
   flex-shrink: 0
@@ -88,12 +87,25 @@ main
     font-size: 30px
     color: $text-color !important
 
-
 .main_block
-  margin-left: 25%
-  margin-right: 25%
+  margin-left: 20%
+  margin-right: 20%
+  @media screen and (max-width: 1000px)
+    margin-left: 10%
+    margin-right: 10%
+  @media screen and (min-width: 1300px)
+    margin-left: 24%
+    margin-right: 24%
+  @media screen and (min-width: 1600px)
+    margin-left: 27%
+    margin-right: 27%
+  @media screen and (min-width: 1900px)
+    margin-left: 32%
+    margin-right: 32%
+
 details, .doc_selection, button,
-input[type=submit], .btn_block label
+input[type=submit],
+.btn_block label, .btn_block input[type=text]
   color: $text-color
   font-weight: bold
   background-color: $sidebar-color
@@ -107,6 +119,9 @@ input[type=submit], .btn_block label
     style: solid
     width: 2px
     radius: 3px
+
+.btn_block input[type=text]
+  outline: none
 
 .doc_selection, .doc_selection + input[type=submit]
   width: 50%
@@ -132,16 +147,24 @@ button, input[type=submit]
   &.tables
     grid-template-columns: 80% 20%
   &.tables_settings
-    grid-template-columns: 60% 40%
+    grid-template-columns: 49.47% 50.53%
+  &.table_column
+    grid-template-columns: auto 200px $sidebar-height
+  &.add_column
+    grid-template-columns: 100%
   *
     width: 100%
     height: auto
     line-height: 100%
     box-sizing: border-box
-    margin: 0
+    margin: 0 !important
     font-size: 13.2px
     font-weight: bold
     font-family: Comfortaa
+  input[type=text]::placeholder
+    color: darken($text-color, 10%)
+    font-weight: bold
+    text-align: center
   input[type=checkbox]
     + label
       &::before, &::after

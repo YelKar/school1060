@@ -1,4 +1,3 @@
-import os.path
 import string
 import sys
 from datetime import datetime
