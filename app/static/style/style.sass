@@ -24,7 +24,7 @@ html
     family: "Comfortaa", sans-serif
     size: 18px
 main
-  padding-top: $sidebar-height * 2
+  padding-top: $sidebar-height + 40px
   min-height: 100vh
   box-sizing: border-box
   margin: 0
@@ -86,6 +86,10 @@ main
 
     font-size: 30px
     color: $text-color !important
+  transition: background-color 200ms, box-shadow 700ms
+  &:hover
+    box-shadow: 8px 8px 30px -10px #000
+    background-color: darken($sidebar-color, 2%)
 
 .main_block
   margin-left: 20%
@@ -105,7 +109,7 @@ main
 
 details, .doc_selection, button,
 input[type=submit],
-.btn_block label, .btn_block input[type=text]
+.btn_block label, .btn_block_el, .btn_block input[type=text]
   color: $text-color
   font-weight: bold
   background-color: $sidebar-color
@@ -128,7 +132,7 @@ input[type=submit],
   margin-right: 25%
   margin-left: 25%
 
-button, input[type=submit]
+button, input[type=submit], label[for=all_checkboxes]
   &:hover
     cursor: pointer
     background-color: darken($sidebar-color, 2%)
@@ -143,7 +147,7 @@ button, input[type=submit]
     bottom: 5px
   display: grid
   &.docs
-    grid-template-columns: 50% 15% 15% 20%
+    grid-template-columns: 45% 15% 15% 25%
   &.tables
     grid-template-columns: 80% 20%
   &.tables_settings
@@ -152,15 +156,24 @@ button, input[type=submit]
     grid-template-columns: auto 200px $sidebar-height
   &.add_column
     grid-template-columns: 100%
+  &.checked_count
+    display: block
+    text-align: center
+    span
+      font:
+        style: inherit
+        size: inherit
+        weight: inherit
   *
     width: 100%
-    height: auto
+    height: 100%
     line-height: 100%
     box-sizing: border-box
     margin: 0 !important
     font-size: 13.2px
     font-weight: bold
     font-family: Comfortaa
+    text-align: center
   input[type=text]::placeholder
     color: darken($text-color, 10%)
     font-weight: bold
@@ -187,8 +200,8 @@ button, input[type=submit]
           display: none
 
 summary
-  display: flex
-  justify-content: space-between
+  display: grid
+  grid-template-columns: auto 160px 25px
   padding:
     left: 35px
     right: 10px
@@ -199,9 +212,14 @@ summary
     position: absolute
     margin-left: -30px
     content: "ᐅ"
+  span.select_class
+    visibility: hidden
 
-details[open] > summary::before
-  content: "ᐁ"
+details[open] > summary
+  &::before
+    content: "ᐁ"
+  span.select_class
+    visibility: visible
 
 .doc_selection
   box-sizing: border-box

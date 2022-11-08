@@ -39,11 +39,19 @@ def generate(titles: list, fullname=True, **sheets: list[list[str]]):
             for col_num, val in enumerate(row, 1):
                 width[col_num - 1] = max(width[col_num - 1], len(str(val)))
                 cell: Cell = ws.cell(row_num, col_num, val)
-
+            for col_num in range(1, len(titles) + 1):
+                cell: Cell = ws.cell(row_num, col_num)
+                cell.border = Border(
+                    left=Side(style="thin"),
+                    right=Side(style="thin"),
+                    top=Side(style="medium"),
+                    bottom=Side(style="thin"),
+                )
         for col, w in enumerate(width, 1):
             letter = get_column_letter(col)
             column = ws.column_dimensions[letter]
-            column.width = w + 2
+            column.width = max(w + 2, 4)
+        # ws.row_dimensions[1].height = 150
     gen_id = datetime.now().strftime("%d-%m-%y___%H-%M-%S--%f")
     wb.save(f"app/documents/generated/xlsx/table{gen_id}.xlsx")
     return f"documents/generated/xlsx/table{gen_id}.xlsx"

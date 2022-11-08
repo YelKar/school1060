@@ -15,7 +15,7 @@ ROLES: list[str] = [
     "STUDENT"
 ]
 # Class Letters
-class_letters = {0: "н", 1: "о", 2: "п"}
+class_letters = {0: "Н", 1: "О", 2: "П"}
 # Создание постоянных с кодами ролей
 for code, name in enumerate(ROLES):
     exec(f"{name}: int = {code}")

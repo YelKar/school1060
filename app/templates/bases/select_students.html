@@ -7,6 +7,7 @@
             <details>
                 <summary>
                     {{ classroom }} класс
+                    <span></span>
                     <div class="checkbox">
                         <input id="chose_class{{ classroom }}" type="checkbox" class="chose_class">
                         <label for="chose_class{{ classroom }}"></label>
@@ -17,6 +18,7 @@
                     <details>
                     <summary>
                         {{ classroom|string + let }}
+                        <span class="select_class">Выбрать всё</span>
                         <div class="checkbox">
                             <input id="chose_class{{ classroom }}{{ let }}" type="checkbox" class="chose_class_let">
                             <label for="chose_class{{ classroom }}{{ let }}"></label>

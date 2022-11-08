@@ -10,3 +10,4 @@ colorama~=0.4.4
 passlib~=1.7.4
 WTForms~=3.0.1
 SQLAlchemy~=1.4.36
+pymorphy2

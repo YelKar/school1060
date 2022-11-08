@@ -102,6 +102,34 @@ function get_selected() {
     return checked;
 }
 
+function count_students(is_checked) {
+    let students = document.querySelectorAll("input[type=checkbox].student_checkbox")
+    let count = 0
+    if (!is_checked) {
+        return students.length
+    }
+    for (let st of students) {
+        if (st.checked) {
+            count += 1
+        }
+    }
+    return count
+}
+let main_bl = document.querySelector("div.main_block")
+let checked_count = document.querySelector("div.checked_count")
+let students_count = document.querySelector("div.checked_count span")
+
+main_bl.addEventListener("change", (e) => {
+    let count = count_students(true)
+    console.log(`Выбрано ${count} учеников`)
+    students_count.textContent = `${count}`
+})
+
+document.addEventListener("DOMContentLoaded", (e) => {
+    let all_count = document.querySelector("div.checked_count span.all_count")
+    all_count.textContent = `${count_students(false)}`
+})
+
 for (let btn of document.querySelectorAll(".generate_btn")) {
     btn.addEventListener("click", to_generate)
 }

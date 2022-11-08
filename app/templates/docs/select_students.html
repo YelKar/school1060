@@ -1,15 +1,18 @@
 {% extends students_base %}
 {% block before %}
     <div class="btn_block docs">
-        <button class="generate_btn" name="print" onclick="return false">Просмотреть и распечатать</button>
-        <button class="generate_btn" name="pdf" onclick="return false" id="download_pdf">pdf</button>
-        <button class="generate_btn" name="docx" onclick="return false" id="download_doc">doc</button>
+        <button class="btn_block_el generate_btn" name="print" onclick="return false">Просмотреть и распечатать</button>
+        <button class="btn_block_el generate_btn" name="pdf" onclick="return false" id="download_pdf">pdf</button>
+        <button class="btn_block_el generate_btn" name="docx" onclick="return false" id="download_doc">doc</button>
         <div class="check_all">
             <input id="all_checkboxes" type="checkbox">
-            <label for="all_checkboxes">
+            <label class="btn_block_el" for="all_checkboxes">
                 <span class="checked">Снять все</span>
                 <span class="unchecked">Выбрать все</span>
             </label>
         </div>
+    </div>
+    <div class="btn_block btn_block_el checked_count">
+        Выбрано <span class="checked_count">0</span> учеников из <span class="all_count"></span>
     </div>
 {% endblock %}
