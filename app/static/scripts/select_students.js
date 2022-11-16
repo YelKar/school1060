@@ -133,3 +133,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
 for (let btn of document.querySelectorAll(".generate_btn")) {
     btn.addEventListener("click", to_generate)
 }
+
+
+const select_all_btn = document.querySelector("#all_checkboxes")
+
+

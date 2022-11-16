@@ -1,7 +1,7 @@
 from flask import request
 
 from app.database import db
-from app.models import User, Info, Role, RolesUsers
+from app.models.student import User, Info, Role
 
 from passlib.hash import pbkdf2_sha256 as cipher
 

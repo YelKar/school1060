@@ -1,21 +1,22 @@
 import os
+import time
 
-import tables
 from app import app
 from flask import render_template, request, redirect, \
     url_for, send_file
 from sqlalchemy.orm.scoping import scoped_session
 
 from app.database import db
-from app.models import Students
+from app.models.student import Students
 from app.constants import class_letters
 
 from datetime import datetime
 from app.documents import docs
+from app.documents import tables
 
 doc_names = [
     name[:-5] for name
-    in os.listdir("app/documents/templates")
+    in os.listdir(os.path.abspath("app/documents/templates"))
     if name[-5:] == ".docx"
 ]
 
@@ -128,3 +129,10 @@ def query_for_table(ids, query):
     print(query, res_query)
     for st_id in ids:
         yield session.query(*query).filter_by(id=st_id).first()
+
+
+@app.route('/js_post', methods=['GET', 'POST'])
+def js_post():
+    time.sleep(1)
+    print(request.json)
+    return "OKKKKKKKKKKKKK"

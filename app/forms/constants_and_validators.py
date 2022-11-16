@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 
-from passlib.hash import pbkdf2_sha256 as pbkdf
 from wtforms import PasswordField, ValidationError, StringField, SubmitField
 from wtforms.widgets import SubmitInput
 
-from app.models import User
+from app.models.student import User
 
 
 class ResetField(SubmitField):

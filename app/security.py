@@ -2,7 +2,7 @@ from flask_security import SQLAlchemyUserDatastore, Security
 
 from app import app
 from app.database import db
-from app.models import User, Role
+from app.models.student import User, Role
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)

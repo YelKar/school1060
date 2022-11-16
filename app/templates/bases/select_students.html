@@ -4,6 +4,7 @@
         <div class="main_block">
             {% block before %}{% endblock %}
             {% for classroom in range(1, 12) %}
+            {% if students.filter_by(classroom=classroom).all() %}
             <details>
                 <summary>
                     {{ classroom }} класс
@@ -14,17 +15,17 @@
                     </div>
                 </summary>
                 {% for num, let in letters.items() %}
-                    {% if students.filter_by(admission_year=year-classroom, classroom_letter=num).all() %}
+                    {% if students.filter_by(classroom=classroom, classroom_letter=num).all() %}
                     <details>
                     <summary>
-                        {{ classroom|string + let }}
+                        {{ classroom|string + " " + let }}
                         <span class="select_class">Выбрать всё</span>
                         <div class="checkbox">
                             <input id="chose_class{{ classroom }}{{ let }}" type="checkbox" class="chose_class_let">
                             <label for="chose_class{{ classroom }}{{ let }}"></label>
                         </div>
                     </summary>
-                    {% for student in students.filter_by(admission_year=year-classroom, classroom_letter=num) %}
+                    {% for student in students.filter_by(classroom=classroom, classroom_letter=num) %}
                         <p class="checkbox">
                             <input type="checkbox" id="{{ student.id }}" name="s{{ student.id }}" class="student_checkbox">
                             <label for="{{ student.id }}">{{ student.lastname }} {{ student.name }} {{ student.patronymic }}</label>
@@ -34,6 +35,7 @@
                     {% endif %}
                 {% endfor %}
                 </details>
+                {% endif %}
             {% endfor %}
             {% block after %}{% endblock %}
         </div>
